@@ -9,5 +9,5 @@ app_name = ElShopConfig.name
 urlpatterns = [
     path("", views.NetElementListView.as_view(), name='element_list'),
     path("create/", views.NetElementCreateView.as_view(), name='element_create'),
-    path("node/<pk>", views.NetElementView.as_view(), name='element_detail'),
+    path("element/<pk>", views.NetElementView.as_view(), name='element_detail'),
 ]

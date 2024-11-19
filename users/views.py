@@ -3,9 +3,10 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from users.models import User
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer, MyTokenObtainPairSerializer
 
 
 class UserViewSet(ViewSet):
@@ -28,3 +29,9 @@ class UserCreateAPIView(CreateAPIView):
         Сохраняем пароль в зашифрованном виде
         """
         serializer.save(password=make_password(serializer.validated_data["password"]))
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    """
+    API для получения токенов JWT
+    """
+    serializer_class = MyTokenObtainPairSerializer
